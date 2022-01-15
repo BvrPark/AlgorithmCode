@@ -12,7 +12,7 @@ public class Lotto {
                     count++;                    //count 1개 증가
                 }
                 for(int j : win_nums) {         //로또 당첨번호를 하나하나 고른 용지와 비교를 한다.
-                    if(i == j) {                //만약 로또 당첨번호가 고른 용지에 있으면
+                    if(i == j) {                //만약 로또 당첨번호가 고른 용지에 있으면,
                         match++;                //서로 맞는 갯수인 match를 1증가시킨다.
                     }
                 }
