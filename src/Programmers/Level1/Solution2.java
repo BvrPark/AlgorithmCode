@@ -1,4 +1,4 @@
-package Programmers.Level_1;
+package Programmers.Level1;
 
 public class Solution2 {
     public int solution(String s) {
