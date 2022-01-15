@@ -22,7 +22,7 @@ public class Lotto {
 
             return answer;
         }
-        public int rank(int n) {            //로또 번호를 맞춘 갯수에 따라 등수를 return해주는 switch-case문 작성
+        public int rank(int n) {            //로또 번호를 맞춘 갯수에 따라 등수를 return해주는 switch-case문 작성.
             switch(n) {
                 case 6 :
                     return 1;
