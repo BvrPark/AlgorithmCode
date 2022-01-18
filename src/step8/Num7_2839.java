@@ -3,7 +3,7 @@ package step8;
 import java.util.Scanner;
 
 public class Num7_2839 {
-    public int solution(int N) {                //자세한 풀이는 블로그에
+    public int solution(int N) {                //자세한 풀이는 블로그에 있음
         if (N % 5 == 0) {
             return N / 5;
         }else if (N == 4 || N == 7) {
