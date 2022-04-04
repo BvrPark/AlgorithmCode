@@ -19,8 +19,8 @@ public class Solution23 {
                 set.add(words[i]);                      //set에 단어를 넣고
                 first = words[i].charAt(0);             //first에 단어의 첫글자를 넣는다.
                 if (last != first || set.size() != i + 1 || words[i].length()==1) { //설명 참고
-                    answer[0] = (i % n) + 1;
-                    answer[1] = (i / n) + 1;
+                    answer[0] = (i % n) + 1;            //index%n로 몇번째 사람인지 구하고 그게 index값이므로 +1
+                    answer[1] = (i / n) + 1;            //index/n으로 몇 번 반복했는지 구하고 그게 index값이므로 +1
                     break;
                 }
                 last = words[i].charAt(words[i].length() - 1);  //last에 단어의 마지막 글자를 넣는다.
