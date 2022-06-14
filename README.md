@@ -1,4 +1,4 @@
-# new_baekjoon_algorithm
+# AlgorithmCode
 알고리즘 풀이코드들을 올리는 곳
 </br></br>
 
