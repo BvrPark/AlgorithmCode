@@ -3,27 +3,26 @@ package Programmers;
 import java.util.*;
 
 public class TestCase {
-    public String solution(String number, int k) {                  //큰 수 만들기
-        StringBuilder answer = new StringBuilder("");
-        int len = number.length() - k;
-        int start = 0;
+    public ArrayList<String> solution(String[] orders, int[] course) {
+        ArrayList<String> answer = new ArrayList<>();   //정답을 담을 배열 생성
+        Map<String,Integer> check = new HashMap<>();    //빈도수 체크할 Map생성
+        for(String s : orders){
+            char[] ch_arr = s.toCharArray();
+            Arrays.sort(ch_arr);
+            s = String.valueOf(ch_arr);
 
-        while(start < number.length() && answer.length() != len) {
-            int leftNum = k + answer.length() + 1;
-            int max = 0;
-            for (int j = start; j < leftNum; j++) {
-                if (max < number.charAt(j) - '0') {
-                    max = number.charAt(j) - '0';
-                    start = j + 1;
-                }
-            }
-            answer.append(Integer.toString(max));
         }
-        return answer.toString();
+        return answer;
     }
+
 
 
     public static void main(String[] args) {
         TestCase test = new TestCase();
+        String[] arr = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
+
+
 }
