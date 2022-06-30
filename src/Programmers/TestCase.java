@@ -7,7 +7,7 @@ public class TestCase {
         ArrayList<String> answer = new ArrayList<>();   //정답을 담을 배열 생성
         Map<String,Integer> check = new HashMap<>();    //빈도수 체크할 Map생성
         for(String s : orders){
-            char[] ch_arr = s.toCharArray();
+            char[] ch_arr = s.toCharArray();            //문자열을 문자배열로 바꿈
             Arrays.sort(ch_arr);
             s = String.valueOf(ch_arr);
 
