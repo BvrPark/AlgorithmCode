@@ -8,9 +8,8 @@ public class TestCase {
         Map<String,Integer> check = new HashMap<>();    //빈도수 체크할 Map생성
         for(String s : orders){
             char[] ch_arr = s.toCharArray();            //문자열을 문자배열로 바꿈
-            Arrays.sort(ch_arr);
-            s = String.valueOf(ch_arr);
-
+            Arrays.sort(ch_arr);                        //문자배열들을 오름차순으로 정렬
+            s = String.valueOf(ch_arr);                 //다시 문자열로 만들어줌
         }
         return answer;
     }
