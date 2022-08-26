@@ -15,7 +15,7 @@ public class Solution38 {           //하노이의 탑 문제
     }
 
     public static int[][] solution(int n) {
-        answer = new int[(int) Math.pow(2, n) - 1][2];
+        answer = new int[(int) Math.pow(2, n) - 1][2];      //총 움직인 횟수를 계산해서 answer 배열로 만들어줌
         idx = 0;
         hanoi(n, 1, 2, 3);
         return answer;
