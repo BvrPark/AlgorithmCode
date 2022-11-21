@@ -1,4 +1,4 @@
-package solved.class_2;
+package solved.class_2.essential;
 
 import java.util.Scanner;
 
