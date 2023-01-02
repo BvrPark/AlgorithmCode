@@ -11,33 +11,57 @@ public class N13 {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        N13 func = new N13();
+        int[] array = new int[8001];
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int count = 0;
+        int temp = 0;
+        boolean b = false;
 
         int N = Integer.parseInt(br.readLine());
-        List<Integer> arr = new ArrayList<>();
+        int[] std = new int[N];
+        List<Integer> cSort = new ArrayList<>();
         int sum = 0;
-        int num;
+        int input;
+
         for (int i = 0; i < N; i++) {
-            num = Integer.parseInt(br.readLine());
-            arr.add(num);
-            sum += num;
+            input = Integer.parseInt(br.readLine());
+            std[i] = input;
+            array[input + 4000]++;
+            sum += input;
+            if (max < input) {
+                max = input;
+            }
+            if (min > input) {
+                min = input;
+            }
         }
-        Collections.sort(arr);
-        sb.append(String.format("%.1f", sum / N)).append("\n");     //산술평균
-        sb.append(arr.get(N / 2)).append("\n");                     //중앙값
-        sb.append(func.number(arr)).append("\n");                   //최빈 값
-        sb.append(arr.get(N - 1) - arr.get(0)).append("\n");        //범위
+
+        for (int i = min + 4000; i <= max + 4000; i++) {
+            if (array[i] > 0) {
+                for (int j = 0; j < array[i]; j++) {
+                    cSort.add(i-4000);
+                }
+                if (count < array[i]) {
+                    count = array[i];
+                    temp = i - 4000;
+                    b = true;
+                } else if (count == array[i] && b == true) {
+                    temp = i - 4000;
+                    b = false;
+                }
+
+            }
+
+        }
+
+        sb.append(Math.round((double) sum / N)).append("\n");     //산술평균
+        sb.append(cSort.get(N / 2)).append("\n");                     //중앙값
+        sb.append(temp).append("\n");                               //최빈 값
+        sb.append(max - min).append("\n");        //범위
 
         System.out.println(sb);
 
     }
 
-    public int number(List<Integer> list) {
-        Map<Integer, Integer> m = new HashMap<>();
-        for (int i : list) {
-            m.put(i, m.getOrDefault(i, 0) + 1);
-        }
-
-    return 0;
-    }
 }
