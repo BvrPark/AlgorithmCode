@@ -46,4 +46,6 @@
     
     </br>
    
-- [**LeetCode**](https://github.com/crupy/LeetCode)
+- **LeetCode**
+    - [LeetCode 풀이코드](https://github.com/crupy/LeetCode)
+    - [LeetCode 알고리즘 용어](https://github.com/crupy/LeetCode/blob/master/Algorithm.md)
