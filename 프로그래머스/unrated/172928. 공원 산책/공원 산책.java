@@ -1,56 +1,42 @@
-import java.util.*;
-
 class Solution {
     public int[] solution(String[] park, String[] routes) {
-        int ix = 0;
-        int iy = 0;
+        int[] answer =new int[2];
+        boolean[][] map=new boolean[park.length][park[0].length()];
         
-        char[][] arr = new char[park.length][park[0].length()];
-        
-        for(int i = 0; i < park.length; i++){
-            arr[i] = park[i].toCharArray();
-            
-            if(park[i].contains("S")){
-                iy = i;
-                ix = park[i].indexOf("S");
-                
+        for(int i=0;i<park.length;i++){
+            for(int j=0;j<park[i].length();j++){
+                char cur=park[i].charAt(j);
+                if(cur!='X'){
+                    map[i][j]=true;
+                }
+                if(cur=='S'){
+                    answer[0]=i;
+                    answer[1]=j;
+                }
             }
         }
-    
-        for(String st : routes){
-            String way = st.split(" ")[0];
-            int len = Integer.parseInt(st.split(" ")[1]);
-            
-            int nx = ix;
-            int ny = iy;
-            
-            for(int i = 0; i < len; i++){
-                if(way.equals("E")){
-                    nx++;
+        loop:for(int i=0;i<routes.length;i++){
+            char cost=routes[i].charAt(0);
+            int lange=routes[i].charAt(2)-'0';
+            int cx=answer[0];
+            int cy=answer[1];
+            for(int j=0;j<lange;j++){
+                switch(cost){
+                        case'N':cx--;break;
+                        case'W':cy--;break;
+                        case'E':cy++;break;
+                        case'S':cx++;break;
                 }
-                if(way.equals("W")){
-                    nx--;
+                if(cx<0||cy<0||cx>=map.length||cy>=map[0].length){
+                    continue loop;
                 }
-                if(way.equals("S")){
-                    ny++;
-                }
-                if(way.equals("N")){
-                    ny--;
-                }
-                if(nx >=0 && ny >=0 && ny < arr.length && nx < arr[0].length){
-                    if(arr[ny][nx] == 'X'){
-                        break;
-                    }
-                
-                    if(i == len-1){
-                        ix = nx;
-                        iy = ny;
-                    }
+                if(!map[cx][cy]){
+                    continue loop;
                 }
             }
-        }       
-        
-        int[] answer = {iy, ix};
+            answer[0]=cx;
+            answer[1]=cy;
+        }
         return answer;
     }
 }
