@@ -1,42 +1,76 @@
-class Solution {
-    public int[] solution(String[] park, String[] routes) {
-        int[] answer =new int[2];
-        boolean[][] map=new boolean[park.length][park[0].length()];
-        
-        for(int i=0;i<park.length;i++){
-            for(int j=0;j<park[i].length();j++){
-                char cur=park[i].charAt(j);
-                if(cur!='X'){
-                    map[i][j]=true;
-                }
-                if(cur=='S'){
-                    answer[0]=i;
-                    answer[1]=j;
-                }
+class Solution{
+public int[] solution(String[] park, String[] routes) {
+    int[] cur = {};  // [h, w]
+    final int wSize = park[0].length(); // 0~n
+    final int hSize = park.length; // 0~n
+    boolean[][] map = new boolean[hSize][wSize];
+    
+    // 현재위치 조정
+    for (int i = 0; i < hSize; i++) {
+        int j = 0;
+        for (String ch : park[i].split("")) {
+            if (ch.equals("S")) {
+                map[i][j] = true;
+                cur = new int[]{i, j};
             }
-        }
-        loop:for(int i=0;i<routes.length;i++){
-            char cost=routes[i].charAt(0);
-            int lange=routes[i].charAt(2)-'0';
-            int cx=answer[0];
-            int cy=answer[1];
-            for(int j=0;j<lange;j++){
-                switch(cost){
-                        case'N':cx--;break;
-                        case'W':cy--;break;
-                        case'E':cy++;break;
-                        case'S':cx++;break;
-                }
-                if(cx<0||cy<0||cx>=map.length||cy>=map[0].length){
-                    continue loop;
-                }
-                if(!map[cx][cy]){
-                    continue loop;
-                }
+            if (ch.equals("O")) {
+                map[i][j] = true;
             }
-            answer[0]=cx;
-            answer[1]=cy;
+            if (ch.equals("X")) {
+                map[i][j] = false;
+            }
+            j++;
         }
-        return answer;
     }
+    
+    for (String r : routes) {
+        int go = Integer.parseInt(r.split("")[2]); // 몇칸
+        boolean pass = true;
+        if (r.startsWith("E") && (cur[1] + go < wSize)) {
+            for (int cnt = 1; cnt <= go; cnt++) {
+                pass = map[cur[0]][cur[1] + cnt];
+                if (!pass) {
+                    break;
+                }
+            }
+            if (pass) {
+                cur[1] += go;
+            }
+        }
+        if (r.startsWith("W") && (0 <= cur[1] - go)) {
+            for (int cnt = 1; cnt <= go; cnt++) {
+                pass = map[cur[0]][cur[1] - cnt];
+                if (!pass) {
+                    break;
+                }
+            }
+            if (pass) {
+                cur[1] -= go;
+            }
+        }
+        if (r.startsWith("S") && (cur[0] + go < hSize)) {
+            for (int cnt = 1; cnt <= go; cnt++) {
+                pass = map[cur[0] + cnt][cur[1]];
+                if (!pass) {
+                    break;
+                }
+            }
+            if (pass) {
+                cur[0] += go;
+            }
+        }
+        if (r.startsWith("N") && (0 <= cur[0] - go)) {
+            for (int cnt = 1; cnt <= go; cnt++) {
+                pass = map[cur[0] - cnt][cur[1]];
+                if (!pass) {
+                    break;
+                }
+            }
+            if (pass) {
+                cur[0] -= go;
+            }
+        }
+    }
+    return cur;
+}
 }
